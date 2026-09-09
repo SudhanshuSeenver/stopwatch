@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --glass: rgba(255, 255, 255, 0.04);
+  --ink: #f4f1ea;
+  --muted: #9b9a98;
+  --accent: #d7ff65;
+}
+
+html,
+body,
+#__next {
+  height: 100%;
+}
+
+.watch-number {
+  min-width: 1.25em;
+  color: var(--ink);
+  font-family: "Courier New", monospace;
+  font-size: clamp(2.75rem, 10vw, 7.5rem);
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  text-align: center;
+  text-shadow: 0 0 30px rgba(215, 255, 101, 0.12);
+}
+
+.watch-number-small {
+  color: var(--accent);
+}
+
+.watch-separator {
+  color: var(--muted);
+  font-family: "Courier New", monospace;
+  font-size: clamp(2.25rem, 8vw, 6rem);
+  line-height: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reduce-motion * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
