@@ -5,6 +5,7 @@ import FlipClock from "./FlipClock";
 import StopwatchControls from "./StopwatchControls";
 import LapModal from "./LapModal";
 import LapList from "./LapList";
+import ConfirmModal from "./ConfirmModal";
 import { formatSplit } from "../../lib/stopwatch";
 
 export default function Stopwatch() {
@@ -25,6 +26,7 @@ export default function Stopwatch() {
   const [modalOpen, setModalOpen] = useState(false);
   const pendingLap = useRef(null);
   const [editingLap, setEditingLap] = useState(null);
+  const [resetConfirmOpen, setResetConfirmOpen] = useState(false);
 
   useEffect(() => {
     function loop() {
@@ -102,7 +104,7 @@ export default function Stopwatch() {
   }
 
   function handleReset() {
-    reset();
+    setResetConfirmOpen(true);
   }
 
   function handleStop() {
@@ -140,6 +142,17 @@ export default function Stopwatch() {
         initialName={editingLap ? editingLap.name : ""}
         onSave={saveLap}
         onCancel={cancelLap}
+      />
+      <ConfirmModal
+        open={resetConfirmOpen}
+        title="Reset stopwatch?"
+        message="The timer will return to zero. Your saved laps will remain."
+        confirmLabel="Reset Timer"
+        onCancel={() => setResetConfirmOpen(false)}
+        onConfirm={() => {
+          reset();
+          setResetConfirmOpen(false);
+        }}
       />
     </div>
   );
